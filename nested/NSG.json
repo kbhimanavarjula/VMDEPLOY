@@ -1,0 +1,83 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "nsgname" : {
+            "type" : "String",
+            "defaultvalue" : "testnsg"
+
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2016-03-30",
+            "name": "[parameters('nsgname')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "securityRules": [
+                {
+                    "name": "Inboundhttps",
+                    "properties": {
+                        "access": "Allow",
+                        "description": "Allow HTTPS Traffic.",
+                        "direction": "Inbound",
+                        "priority": 500,
+                        "protocol": "Tcp/Udp/*",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "443",
+                        "sourcePortRange": "*"
+                    }
+                },
+                {
+                    "name": "Inboundrdp",
+                    "properties": {
+                        "description": "Allows RDP traffic",
+                        "protocol": "Tcp/Udp/*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "3389",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "nsgRuleAccess",
+                        "priority": 501,
+                        "direction": "Inbound"
+                    }
+                },
+                {
+                    "name": "Inbiundssh",
+                    "properties": {
+                        "description": "allows ssh traffic",
+                        "protocol": "tcp/udp/*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "22",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "nsgRuleAccess",
+                        "priority": 502,
+                        "direction": "Inbound"
+                    }
+                },
+                {
+                    "name": "outboundalltraffic",
+                    "properties": {
+                        "description": "allows all outbound traffic",
+                        "protocol": "Tcp/Udp/*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "nsgRuleAccess",
+                        "priority": 301,
+                        "direction": "Outbound"
+                    }
+                }
+                ]
+           }
+        }
+    ],
+    "outputs": {
+    }
+  }

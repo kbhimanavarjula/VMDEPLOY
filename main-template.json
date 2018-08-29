@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+    },
+    "variables": {
+      "baseUrl": "https://raw.githubusercontent.com/kbhimanavarjula/VMdeploy/master/",
+      "VNETTemplateFolder": "nestedtemplates",
+      "VNETTemplateFileName": "VNET.json",
+      "NSGTemplateFileName" : "NSG.json",
+      "VNETTemplateParametersFileName": "VNET.parameters.json",
+      "NSGTemplateParametersFileName": "NSG.parameters.json"
+    },
+    "resources": [
+      {
+        "name": "VNETDeploy",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2016-09-01",
+        "dependsOn": [
+          
+         ],
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('VNETTemplateFileName'))]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parametersLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('VNETTemplateParametersFileName'))]",
+            "contentVersion": "1.0.0.0"
+          }
+        }
+      },
+      {
+        "name": "NSGDeploy",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2016-09-01",
+        "dependsOn": [
+          "VNETDeploy"
+         ],
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('NSGTemplateFileName'))]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parametersLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('NSGTemplateParametersFileName'))]",
+            "contentVersion": "1.0.0.0"
+          }
+        }
+      }  
+    ],
+    "outputs": {
+    }
+  }

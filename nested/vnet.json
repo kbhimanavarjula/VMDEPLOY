@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetname" : {
+            "type" : "String",
+            "defaultvalue" : "testvnet"
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2016-03-30",
+            "location": "[resourceGroup().location]",
+            "name": "[parameters('vnetname')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.5.0.0/16",
+                        "10.10.0.0/16"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "8.8.8.8",
+                        "8.8.4.4"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "WebServers",
+                        "properties": {
+                            "addressPrefix": "10.5.0.0/24"                        }
+                    },
+                    {
+                        "name": "DatabaseServers",
+                        "properties": {
+                            "addressPrefix": "10.10.0.0/24"
+                        }
+                    }
+                ]
+            }
+        }                   
+    ],
+    "outputs": {
+    }
+}
