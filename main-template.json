@@ -10,7 +10,9 @@
       "VNETTemplateFileName": "vnet.json",
       "NSGTemplateFileName" : "NSG.json",
       "VNETTemplateParametersFileName": "VNET.parameters.json",
-      "NSGTemplateParametersFileName": "NSG.parameters.json"
+      "NSGTemplateParametersFileName": "NSG.parameters.json",
+      "VMTemplateFileName" : "VirtualMachine.json",
+      "VMTemplateParametersFileName" : "VirtualMachine.parameters.json"
     },
     "resources": [
       {
@@ -47,6 +49,25 @@
           },
           "parametersLink": {
             "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('NSGTemplateParametersFileName'))]",
+            "contentVersion": "1.0.0.0"
+          }
+        }
+      },
+      {
+        "name": "VMDeploy",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2016-09-01",
+        "dependsOn": [
+          "VNETDeploy"
+         ],
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('VMTemplateFileName'))]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parametersLink": {
+            "uri": "[concat(variables('baseUrl'), '/', variables('VNETTemplateFolder'), '/', variables('VMTemplateParametersFileName'))]",
             "contentVersion": "1.0.0.0"
           }
         }
