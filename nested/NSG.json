@@ -41,7 +41,7 @@
                         "destinationPortRange": "3389",
                         "sourceAddressPrefix": "*",
                         "destinationAddressPrefix": "*",
-                        "access": "nsgRuleAccess",
+                        "access": "Allow",
                         "priority": 501,
                         "direction": "Inbound"
                     }
@@ -55,7 +55,7 @@
                         "destinationPortRange": "22",
                         "sourceAddressPrefix": "*",
                         "destinationAddressPrefix": "*",
-                        "access": "nsgRuleAccess",
+                        "access": "Allow",
                         "priority": 502,
                         "direction": "Inbound"
                     }
@@ -69,7 +69,7 @@
                         "destinationPortRange": "*",
                         "sourceAddressPrefix": "*",
                         "destinationAddressPrefix": "*",
-                        "access": "nsgRuleAccess",
+                        "access": "Allow",
                         "priority": 301,
                         "direction": "Outbound"
                     }
