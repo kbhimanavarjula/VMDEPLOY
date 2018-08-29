@@ -25,7 +25,7 @@
                         "description": "Allow HTTPS Traffic.",
                         "direction": "Inbound",
                         "priority": 500,
-                        "protocol": "Tcp/Udp/*",
+                        "protocol": "*",
                         "sourceAddressPrefix": "*",
                         "destinationAddressPrefix": "*",
                         "destinationPortRange": "443",
@@ -36,7 +36,7 @@
                     "name": "Inboundrdp",
                     "properties": {
                         "description": "Allows RDP traffic",
-                        "protocol": "Tcp/Udp/*",
+                        "protocol": "*",
                         "sourcePortRange": "*",
                         "destinationPortRange": "3389",
                         "sourceAddressPrefix": "*",
@@ -50,7 +50,7 @@
                     "name": "Inbiundssh",
                     "properties": {
                         "description": "allows ssh traffic",
-                        "protocol": "tcp/udp/*",
+                        "protocol": "*",
                         "sourcePortRange": "*",
                         "destinationPortRange": "22",
                         "sourceAddressPrefix": "*",
@@ -64,7 +64,7 @@
                     "name": "outboundalltraffic",
                     "properties": {
                         "description": "allows all outbound traffic",
-                        "protocol": "Tcp/Udp/*",
+                        "protocol": "*",
                         "sourcePortRange": "*",
                         "destinationPortRange": "*",
                         "sourceAddressPrefix": "*",
