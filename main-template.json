@@ -5,8 +5,8 @@
 
     },
     "variables": {
-      "baseUrl": "https://raw.githubusercontent.com/kbhimanavarjula/VMdeploy/master/",
-      "VNETTemplateFolder": "nestedtemplates",
+      "baseUrl": "https://raw.githubusercontent.com/kbhimanavarjula/VMdeploy/master",
+      "VNETTemplateFolder": "nested",
       "VNETTemplateFileName": "VNET.json",
       "NSGTemplateFileName" : "NSG.json",
       "VNETTemplateParametersFileName": "VNET.parameters.json",
