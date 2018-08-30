@@ -4,7 +4,6 @@
     "parameters": {
         "nsgname" : {
             "type" : "String",
-            "defaultvalue" : "testnsg"
 
         }
     },
